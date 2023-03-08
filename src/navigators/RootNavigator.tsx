@@ -1,6 +1,6 @@
 import React from 'react';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+// import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 import { SafeAreaView, Text, View } from 'react-native';
 import { AccountScreen, DeskScreen, HomeScreen, LibraryScreen, SettingsScreen } from '../screens';
@@ -38,45 +38,45 @@ const RootNavigator = () => {
                 name='Home'
                 component={HomeScreen}
                 options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Icon name='home' size={size} color={color} />
-                    ),
+                    // drawerIcon: ({ focused, size, color }) => (
+                    //     <Icon name='home' size={size} color={color} />
+                    // ),
                 }}
             />
             <Screen
                 name='Library'
                 component={LibraryScreen}
                 options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Icon name='book-open' size={size} color={color} />
-                    ),
+                    // drawerIcon: ({ focused, size, color }) => (
+                    //     <Icon name='book-open' size={size} color={color} />
+                    // ),
                 }}
             />
             <Screen
                 name='Desk'
                 component={DeskScreen}
                 options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Icon name='desk' size={size} color={color} />
-                    ),
+                    // drawerIcon: ({ focused, size, color }) => (
+                    //     <Icon name='desk' size={size} color={color} />
+                    // ),
                 }}
             />
             <Screen
                 name='Account'
                 component={AccountScreen}
                 options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Icon name='account' size={size} color={color} />
-                    ),
+                    // drawerIcon: ({ focused, size, color }) => (
+                    //     <Icon name='account' size={size} color={color} />
+                    // ),
                 }}
             />
             <Screen
                 name='Settings'
                 component={SettingsScreen}
                 options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Icon name='cog' size={size} color={color} />
-                    ),
+                    // drawerIcon: ({ focused, size, color }) => (
+                    //     <Icon name='cog' size={size} color={color} />
+                    // ),
                 }}
             />
         </Navigator>

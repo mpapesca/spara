@@ -5,7 +5,7 @@ const WorkApi = () => {
 
   const getWork = (id: number): Work => {
     return works.filter(work => work.id === id)?.[0];
-  }
+  };
 
   const getAllWorks = (): Work[] => {
     return works
@@ -14,7 +14,7 @@ const WorkApi = () => {
   return {
     getWork,
     getAllWorks,
-  }
+  };
 };
 
 export default WorkApi;
