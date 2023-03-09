@@ -1,8 +1,8 @@
-interface Work {
+interface IWork {
   id: number,
   userId: number,
   title: string,
   content: string,
 };
 
-export default Work;
+export default IWork;

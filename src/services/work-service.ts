@@ -1,14 +1,14 @@
 import { WorkApi } from "../apis";
-import { Work } from "../data/types";
+import { IWork } from "../data/types";
 
 const WorkService = () => {
   const workApi = WorkApi();
 
-  const getWork = (id: number): Work => {
+  const getWork = (id: number): IWork => {
     return workApi.getWork(id);
   };
 
-  const getAllWorks = (): Work[] => {
+  const getAllWorks = (): IWork[] => {
     return workApi.getAllWorks();
   };
 

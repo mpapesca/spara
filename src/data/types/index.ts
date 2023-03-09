@@ -1,7 +1,7 @@
-import Work from "./Work";
-import User from "./User";
+import IWork from "./Work";
+import IUser from "./User";
 
 export {
-  User,
-  Work,
+  IUser,
+  IWork,
 };

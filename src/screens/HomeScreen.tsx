@@ -1,15 +1,17 @@
+import { Box, Row } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
-import { User, Work } from '../data/types';
+import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
+import { WorkDisplay, WorksList } from '../components';
+import { IUser, IWork } from '../data/types';
 import { UserService, WorkService } from '../services';
 
 const HomeScreen = () => {
     const userService = UserService();
     const workService = WorkService();
 
-    const [users, setUsers] = useState<User[]>([]);
-    const [currentUser, setCurrentUser] = useState<User>();
-    const [works, setWorks] = useState<Work[]>([]);
+    const [users, setUsers] = useState<IUser[]>([]);
+    const [currentUser, setCurrentUser] = useState<IUser>();
+    const [works, setWorks] = useState<IWork[]>([]);
 
     useEffect(() => {
         setUsers(userService.getAllUsers());
@@ -17,13 +19,28 @@ const HomeScreen = () => {
         setCurrentUser(userService.getUser(1));
     }, []);
 
+    const worksList1 = works.map((work) => <WorkDisplay key={`work-${work.id}`} work={work} />);
+    const worksList2 = works.map((work) => <WorkDisplay key={`work-${work.id}`} work={work} />);
+    const worksList3 = works.map((work) => <WorkDisplay key={`work-${work.id}`} work={work} />);
+    const worksList4 = works.map((work) => <WorkDisplay key={`work-${work.id}`} work={work} />);
+
     return (
         <SafeAreaView>
             <View style={styles.container}>
-                <Text style={styles.title}>Home</Text>
-                <Text>Users: {users.length}</Text>
-                <Text>Works: {works.length}</Text>
-                <Text>User: {JSON.stringify(currentUser)}</Text>
+                <ScrollView>
+                    <Row>
+                        <WorksList title='List 1' works={works} />
+                    </Row>
+                    <Row>
+                        <WorksList title='List 2' works={works} />
+                    </Row>
+                    <Row>
+                        <WorksList title='List 3' works={works} />
+                    </Row>
+                    <Row>
+                        <WorksList title='List 4' works={works} />
+                    </Row>
+                </ScrollView>
             </View>
         </SafeAreaView>
     );
@@ -33,8 +50,8 @@ const styles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     title: {
         fontSize: 32,

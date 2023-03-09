@@ -1,6 +1,6 @@
-import { Work } from "../types";
+import { IWork } from "../types";
 
-const works: Work[] = [
+const works: IWork[] = [
   {
     id: 1,
     userId: 1,
@@ -16,7 +16,7 @@ const works: Work[] = [
   {
     id: 3,
     userId: 3,
-    title: "Velit fugiat sit laborum et molestiae ut incidunt maxime voluptates.\nReprehenderit porro sunt.\nQuia sed reiciendis voluptas ex rerum tempora doloremque dolor.",
+    title: "Velit fugiat sit laborum et molestiae ut incidunt maxime voluptates.",
     content: "Nihil blanditiis placeat voluptas quisquam eveniet velit quos culpa voluptates.\nSapiente ab sint ipsa impedit facilis quod.\nAccusamus soluta velit.\nRatione amet impedit soluta quod labore adipisci qui reprehenderit.",
   },
   {
@@ -52,7 +52,7 @@ const works: Work[] = [
   {
     id: 9,
     userId: 9,
-    title: "Quasi omnis id magni assumenda. Omnis sint officiis. Quis corporis sunt et consequatur. Culpa nulla modi laboriosam ipsum quisquam quia sequi nam possimus. Culpa hic omnis quia.",
+    title: "Quasi omnis id magni assumenda.",
     content: "libero praesentium dolores",
   },
   {

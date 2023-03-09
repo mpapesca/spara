@@ -1,13 +1,13 @@
 import { works } from "../data/sample-data";
-import { Work } from "../data/types";
+import { IWork } from "../data/types";
 
 const WorkApi = () => {
 
-  const getWork = (id: number): Work => {
+  const getWork = (id: number): IWork => {
     return works.filter(work => work.id === id)?.[0];
   };
 
-  const getAllWorks = (): Work[] => {
+  const getAllWorks = (): IWork[] => {
     return works
   };
 

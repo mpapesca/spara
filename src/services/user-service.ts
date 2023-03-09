@@ -1,15 +1,15 @@
 import { UserApi } from "../apis";
-import { User } from "../data/types";
+import { IUser } from "../data/types";
 
 const UserService = () => {
 
   const userApi = UserApi();
 
-  const getUser = (id: number): User => {
+  const getUser = (id: number): IUser => {
     return userApi.getUser(id);
   };
 
-  const getAllUsers = (): User[] => {
+  const getAllUsers = (): IUser[] => {
     return userApi.getAllUsers();
   };
 

@@ -1,13 +1,13 @@
 import { users } from "../data/sample-data";
-import { User } from "../data/types";
+import { IUser } from "../data/types";
 
 const UserApi = () => {
 
-  const getUser = (id: number): User => {
+  const getUser = (id: number): IUser => {
     return users.filter(user => user.id === id)?.[0];
   };
 
-  const getAllUsers = (): User[] => {
+  const getAllUsers = (): IUser[] => {
     return users;
   };
 
