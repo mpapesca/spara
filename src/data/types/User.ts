@@ -4,6 +4,8 @@ interface IUser {
   email: string,
   firstName: string,
   lastName: string,
+  rating: number,
+  image: string,
 }
 
 export default IUser;
