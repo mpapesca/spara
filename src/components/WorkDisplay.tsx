@@ -4,9 +4,12 @@ import { IWork } from '../data/types';
 
 interface Props {
     work: IWork;
+    width?: number;
 }
 
-const WorkDisplay = ({ work }: Props) => {
+const WorkDisplay = ({ work, width = 4 }: Props) => {
+    const calculatedHeight = 48 * (width / 4);
+    const calculatedWidth = 32 * (width / 4);
     return (
         <Box
             shadow={2}

@@ -1,12 +1,21 @@
+import { Input, TextArea, Text, KeyboardAvoidingView } from 'native-base';
 import React from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView,  View, StyleSheet } from 'react-native';
 
 const DeskScreen = () => {
     return (
         <SafeAreaView>
-            <View style={styles.container}>
-                <Text style={styles.title}>Desk</Text>
-            </View>
+                <KeyboardAvoidingView behavior='padding'>
+                <View style={styles.container}>
+                    <Input
+                        width='100%'
+                        placeholder='Title'
+                        flex={0}
+                    />
+                    <TextArea flex={1} width='100%' placeholder='content' autoCompleteType={null} scrollEnabled/>
+                    <Text>Bottom</Text>
+                </View>
+                    </KeyboardAvoidingView >
         </SafeAreaView>
     );
 };
