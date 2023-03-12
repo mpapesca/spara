@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "story-share",
-    "slug": "story-share",
+    "name": "spara",
+    "slug": "spara",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "89ef9552-4e33-4463-8675-41dee5f95e99"
+      }
+    },
+    "owner": "mpapesca",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/89ef9552-4e33-4463-8675-41dee5f95e99"
     }
   }
 }
