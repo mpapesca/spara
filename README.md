@@ -1,2 +1,2 @@
-Story Share
-A story sharing app
+# SPARA
+Self Publishing and Reading App
