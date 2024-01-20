@@ -12,7 +12,8 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v4
         with:
-          repository: mpapesca/ink.spara.app
+          repository: mpapesca/spara-app
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
