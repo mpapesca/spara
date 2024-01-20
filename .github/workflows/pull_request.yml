@@ -1,30 +1,47 @@
+name: Pull Request
+
 on:
   pull_request:
     types: [opened, synchronize]
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm test
   preview:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write # Allow comments on PRs
     steps:
       - name: Setup repo
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
-          cache: yarn
-
+          node-version: ${{ vars.NODE_VERSION }}
+          cache: npm
       - name: Setup EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-
       - name: Install dependencies
-        run: yarn install
-
+        run: npm i
       - name: Create preview
         uses: expo/expo-github-action/preview@v8
         with:
