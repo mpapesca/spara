@@ -1,10 +1,27 @@
-name: Create Preview
+name: Pull Request
 
 on:
   pull_request:
     types: [opened, synchronize]
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm test
   preview:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write # Allow comments on PRs
@@ -12,24 +29,19 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v4
         with:
-          repository: mpapesca/spara-app
           token: ${{ secrets.GH_TOKEN }}
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: ${{ vars.NODE_VERSION }}
           cache: npm
-
       - name: Setup EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-
       - name: Install dependencies
-        run: npm install
-
+        run: npm i
       - name: Create preview
         uses: expo/expo-github-action/preview@v8
         with:
