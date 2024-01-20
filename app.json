@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ink.spara.app",
-    "slug": "ink.spara.app",
+    "name": "Spara",
+    "slug": "spara-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -25,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ce2a30ce-3d99-499e-a89e-81de504fbf87"
+      }
+    },
+    "owner": "mpapesca"
   }
 }
