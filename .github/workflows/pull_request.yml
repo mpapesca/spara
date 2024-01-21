@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Is validation needed?
-        if: ${{ !env.should-validate }}
+        if: ${{ env.should-validate == false }}
         run: echo 'Validation not needed' && exit 0
       - name: Is bad validation?
         if: ${{ env.should-validate && github.event.pull_request.head.ref != env.head }}
