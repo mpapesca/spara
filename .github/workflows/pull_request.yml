@@ -7,7 +7,6 @@ on:
       - '**'
       - '!main'
       - '!preview'
-      - '!development'
 jobs:
   test:
     runs-on: ubuntu-latest
