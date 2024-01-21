@@ -1,6 +1,6 @@
 name: Validate PR Branches
 on: 
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -16,4 +16,4 @@ jobs:
     steps:
       - name: Check source and target
         if: ${{ github.event.pull_request.head.ref != env.source }}
-        run: exit 1
+        run: echo 'Cannot target branch ${{github.event.pull_request.base.ref}} from source branch ${{github.event.pull_request.head.ref}}' &&  exit 1
