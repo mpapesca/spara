@@ -1,4 +1,4 @@
-name: Update Production
+name: Update Preview
 
 on:
   push:
