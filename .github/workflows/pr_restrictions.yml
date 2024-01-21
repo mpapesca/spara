@@ -12,8 +12,6 @@ jobs:
   validate:
     strategy:
       matrix:
-        target: [main, preview]
-        source: [preview, development]
         include:
           - target: main
             source: preview
