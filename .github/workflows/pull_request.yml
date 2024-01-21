@@ -39,6 +39,7 @@ jobs:
     - name: Run tests
       run: npm test -- --ci --json --coverage --testLocationInResults --outputFile=report.json
     - name: LS Directory
+      if: always()
       run: ls -la
     - name: Get coverage
       if: always()
