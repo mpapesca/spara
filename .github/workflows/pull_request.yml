@@ -34,6 +34,22 @@ jobs:
       run: npm ci
     - name: Run tests
       run: npm test
+    - name: LS coverage directory
+      run: ls -la ./coverage
+    - name: Get test coverage
+      uses: artiomtr/jest-coverage-report-action@v2
+      with:
+        coverage-file: ./coverage/report.json
+        base-coverage-file: ./coverage/master/report.json
+        github-token: ${{ secrets.GH_TOKEN }}
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: artiomtr/jest-coverage-report-action@v2
+        with:
+          test-script: npm test
+          github-token: ${{ secrets.GH_TOKEN }}
   preview:
     if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
