@@ -10,6 +10,7 @@ on:
 jobs:
   validate:
     env:
+
       base: ${{ github.event.pull_request.base.ref }}
       head: ${{ github.event.pull_request.head.ref }}
       required_head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
