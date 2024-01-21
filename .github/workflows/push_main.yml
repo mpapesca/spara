@@ -1,13 +1,31 @@
-name: Pull Request
+name: Push to Main
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
     branches:
-      - '!main'
-      - '!preview'
-      - '!development'
+      - main
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+          cache: 'npm'
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install dependencies
+        run: npm ci
+      - name: 🚀 Create update
+        run: eas update --auto --non-interactive --channel=production --branch=main
   test:
     runs-on: ubuntu-latest
     steps:
