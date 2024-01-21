@@ -9,13 +9,12 @@ on:
       - '!preview'
 jobs:
   validate:
-    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'preview'
     env:
       head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check head and base
-        if: ${{ github.event.pull_request.head.ref != env.head }}
+        if: ${{ (github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'preview') && github.event.pull_request.head.ref != env.head }}
         run: echo 'Cannot target branch ${{github.event.pull_request.base.ref}} from source branch ${{github.event.pull_request.head.ref}}' &&  exit 1
   test:
     needs: validate
