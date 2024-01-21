@@ -17,7 +17,7 @@ jobs:
         if: ${{ github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview' }}
         run: echo 'Validation not needed' && exit 0
       - name: Check validation
-        if: ${{ github.event.pull_request.head.ref != env.head }}
+        if: ${{ !(github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview') && github.event.pull_request.head.ref != env.head }}
         run: echo 'Cannot target branch ${{github.event.pull_request.base.ref}} from source branch ${{github.event.pull_request.head.ref}}' &&  exit 1
   test:
     needs: validate
