@@ -4,9 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches:
+      - '**'
       - '!main'
       - '!preview'
-      - '!development'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -51,4 +51,4 @@ jobs:
         with:
           # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
           # Use your own, or keep the automatically infered branch name from `--auto`, when using different triggers.
-          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+          command: eas update --auto --branch=${{ github.event.pull_request.head.ref }}
