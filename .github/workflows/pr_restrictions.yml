@@ -10,15 +10,10 @@ on:
       - 'preview'
 jobs:
   validate:
-    strategy:
-      matrix:
-        include:
-          - target: main
-            source: preview
-          - target: preview
-            source: development
+    env:
+      source: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check source and target
-        if: ${{ github.event.pull_request.base.ref == matrix.target && github.event.pull_request.head.ref != matrix.source }}
+        if: ${{ github.event.pull_request.head.ref != env.source }}
         run: exit 1
