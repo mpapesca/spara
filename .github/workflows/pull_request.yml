@@ -2,7 +2,7 @@ name: Pull Request
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
     branches:
       - '**'
       - '!main'
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Skip validation
-        if: ${{ github.event.pull_request.base.ref != 'main' && env.head != 'preview' }}
+        if: ${{ github.action.pull_request.base.ref != 'main' && env.head != 'preview' }}
         run: echo 'Can point head branch ${{ env.head }} at base branch ${{ env.base }}' && exit 0
       - name: Check validation
         if: ${{ (env.base == 'main' || env.base == 'preview') && env.head != env.required_head }}
