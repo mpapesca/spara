@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Skip validation
         if: ${{ github.event.pull_request.base.ref != 'main' && env.head != 'preview' }}
-        run: echo 'Validation not needed' && exit 0
+        run: echo 'Can point head branch ${{ env.head }} at base branch ${{ env.base }}' && exit 0
       - name: Check validation
         if: ${{ (env.base == 'main' || env.base == 'preview') && env.head != env.required_head }}
         run: echo 'Cannot point head branch ${{ env.head }} at base branch ${{ env.base }}' &&  exit 1
