@@ -2,9 +2,23 @@ name: Pull Request
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 jobs:
+  validate:
+    env:
+      base: ${{ github.event.pull_request.base.ref }}
+      head: ${{ github.event.pull_request.head.ref }}
+      required_head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip validation
+        if: ${{ github.action.pull_request.base.ref != 'main' && env.head != 'preview' }}
+        run: echo 'Can point head branch ${{ env.head }} at base branch ${{ env.base }}' && exit 0
+      - name: Check validation
+        if: ${{ (env.base == 'main' || env.base == 'preview') && env.head != env.required_head }}
+        run: echo 'Cannot point head branch ${{ env.head }} at base branch ${{ env.base }}' &&  exit 1
   test:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
@@ -21,6 +35,7 @@ jobs:
     - name: Run tests
       run: npm test
   preview:
+    if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
     runs-on: ubuntu-latest
     permissions:
@@ -47,4 +62,4 @@ jobs:
         with:
           # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
           # Use your own, or keep the automatically infered branch name from `--auto`, when using different triggers.
-          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+          command: eas update --auto --branch=${{ github.event.pull_request.head.ref }}
