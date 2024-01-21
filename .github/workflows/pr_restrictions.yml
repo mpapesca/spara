@@ -1,0 +1,26 @@
+name: Validate PR Branches
+on: 
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:    
+      - 'main'
+      - 'preview'
+jobs:
+  validate:
+    strategy:
+      matrix:
+        target: [main, preview]
+        source: [preview, development]
+        include:
+          - target: main
+            source: preview
+          - target: preview
+            source: development
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source and target
+        if: ${{ github.event.pull_request.base.ref == matrix.target && github.event.pull_request.head.ref != matrix.source }}
+        run: exit 1
