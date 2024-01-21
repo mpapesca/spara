@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Create update
-        run: eas update --non-interactive --channel='preview'
+        run: eas update --non-interactive --channel='preview' --message='${{ github.event.head_commit.message}}'
