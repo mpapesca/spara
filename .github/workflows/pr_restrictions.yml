@@ -1,14 +1,11 @@
 name: Validate PR Branches
 on: 
-  pull_request_target:
+  pull_request:
     types:
       - assigned
       - opened
       - synchronize
       - reopened
-    branches:
-      - main
-      - preview
 jobs:
   validate:
     if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'preview'
