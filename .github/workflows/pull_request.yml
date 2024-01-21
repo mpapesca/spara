@@ -28,7 +28,7 @@ jobs:
     - name: Checkout branch
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ github.token }}
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
@@ -38,9 +38,6 @@ jobs:
       run: npm ci
     - name: Run tests
       run: npm test -- --ci --json --coverage --testLocationInResults --outputFile=report.json
-    - name: LS Directory
-      if: always()
-      run: ls -la
     - name: Get coverage
       if: always()
       uses: artiomtr/jest-coverage-report-action@v2
