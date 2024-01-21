@@ -3,14 +3,9 @@ name: Pull Request
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches:
-      - '**'
-      - '!main'
-      - '!preview'
 jobs:
   validate:
     env:
-
       base: ${{ github.event.pull_request.base.ref }}
       head: ${{ github.event.pull_request.head.ref }}
       required_head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
@@ -40,6 +35,7 @@ jobs:
     - name: Run tests
       run: npm test
   preview:
+    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.head.ref == 'preview'
     needs: test
     runs-on: ubuntu-latest
     permissions:
