@@ -34,15 +34,12 @@ jobs:
       run: npm ci
     - name: Run tests
       run: npm test -- --ci --json --coverage --testLocationInResults --outputFile=report.json
-    - name: LS coverage directory
-      if: always()
-      run: ls -la
-    - name: Run tests and get coverage
+    - name: Get coverage
       if: always()
       uses: artiomtr/jest-coverage-report-action@v2
       with:
         coverage-file: report.json
-        github-token: ${{ secrets.GH_TOKEN }}
+        # github-token: ${{ secrets.GH_TOKEN }}
   preview:
     if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
