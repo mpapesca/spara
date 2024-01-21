@@ -5,11 +5,9 @@ on:
       - opened
       - synchronize
       - reopened
-    branches:    
-      - 'main'
-      - 'preview'
 jobs:
   validate:
+    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'preview'
     env:
       source: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
     runs-on: ubuntu-latest
