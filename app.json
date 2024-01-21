@@ -11,15 +11,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ink.spara.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "ink.spara.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -29,6 +33,12 @@
         "projectId": "ce2a30ce-3d99-499e-a89e-81de504fbf87"
       }
     },
-    "owner": "mpapesca"
+    "owner": "mpapesca",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ce2a30ce-3d99-499e-a89e-81de504fbf87"
+    }
   }
 }

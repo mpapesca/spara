@@ -1,0 +1,25 @@
+{
+  "build": {
+    "production": {
+      "node": "20.11.0",
+      "env": {
+        "ENV": "production"
+      }
+    },
+    "preview": {
+      "extends": "production",
+      "distribution": "internal",
+      "env": {
+        "ENV": "preview"
+      }
+    },
+    "development": {
+      "extends": "preview",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "ENV": "development"
+      }
+    }
+  }
+}
