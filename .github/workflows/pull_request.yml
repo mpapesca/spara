@@ -10,15 +10,17 @@ on:
 jobs:
   validate:
     env:
-      head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
+      base: ${{ github.event.pull_request.base.ref }}
+      head: ${{ github.event.pull_request.head.ref }}
+      required_head: ${{ github.event.pull_request.base.ref == 'main' && 'preview' || 'development' }}
     runs-on: ubuntu-latest
     steps:
       - name: Skip validation
-        if: ${{ github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview' }}
+        if: ${{ github.event.pull_request.base.ref != 'main' && env.head != 'preview' }}
         run: echo 'Validation not needed' && exit 0
       - name: Check validation
-        if: ${{ !(github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview') && github.event.pull_request.head.ref != env.head }}
-        run: echo 'Cannot target branch ${{github.event.pull_request.base.ref}} from source branch ${{github.event.pull_request.head.ref}}' &&  exit 1
+        if: ${{ (env.base == 'main' || env.base == 'preview') && env.head != env.required_head }}
+        run: echo 'Cannot point head branch ${{ env.head }} at base branch ${{ env.base }}' &&  exit 1
   test:
     needs: validate
     runs-on: ubuntu-latest
