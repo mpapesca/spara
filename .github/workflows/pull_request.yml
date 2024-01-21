@@ -42,7 +42,10 @@ jobs:
       if: always()
       uses: artiomtr/jest-coverage-report-action@v2
       with:
+        skip-step: all
+        output: comment
         coverage-file: report.json
+        base-coverage-file: report.json
         github-token: ${{ secrets.GH_TOKEN }}
   preview:
     if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
