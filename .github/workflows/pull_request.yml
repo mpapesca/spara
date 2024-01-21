@@ -35,7 +35,7 @@ jobs:
     - name: Run tests
       run: npm test
   preview:
-    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.head.ref == 'preview'
+    if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
     runs-on: ubuntu-latest
     permissions:
