@@ -48,7 +48,7 @@ jobs:
         output: comment
         coverage-file: report.json
         base-coverage-file: report.json
-        github-token: ${{ secrets.GH_TOKEN }}
+        github-token: ${{ github.token }}
   preview:
     if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
