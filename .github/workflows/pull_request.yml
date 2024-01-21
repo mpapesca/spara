@@ -35,8 +35,10 @@ jobs:
     - name: Run tests
       run: npm test -- --ci --json --coverage --testLocationInResults --outputFile=report.json
     - name: LS coverage directory
+      if: always()
       run: ls -la
     - name: Run tests and get coverage
+      if: always()
       uses: artiomtr/jest-coverage-report-action@v2
       with:
         coverage-file: report.json
