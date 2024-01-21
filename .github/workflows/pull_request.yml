@@ -20,6 +20,10 @@ jobs:
   test:
     needs: validate
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write
     steps:
     - name: Checkout branch
       uses: actions/checkout@v4
@@ -39,7 +43,7 @@ jobs:
       uses: artiomtr/jest-coverage-report-action@v2
       with:
         coverage-file: report.json
-        # github-token: ${{ secrets.GH_TOKEN }}
+        github-token: ${{ secrets.GH_TOKEN }}
   preview:
     if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'preview'
     needs: test
