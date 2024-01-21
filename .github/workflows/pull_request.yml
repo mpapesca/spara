@@ -42,7 +42,6 @@ jobs:
       if: always()
       uses: artiomtr/jest-coverage-report-action@v2
       with:
-        skip-step: all
         output: comment
         coverage-file: report.json
         base-coverage-file: report.json
