@@ -35,7 +35,7 @@ jobs:
     - name: Run tests
       run: npm test
     - name: LS coverage directory
-      run: ls -la ./coverage
+      run: ls -la
     - name: Get test coverage
       uses: artiomtr/jest-coverage-report-action@v2
       with:
